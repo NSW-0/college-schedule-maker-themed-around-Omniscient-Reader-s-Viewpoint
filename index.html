@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schedule Maker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="app">
+
+    <!-- Controls Bar — NOT in screenshot -->
+    <header id="controls-bar">
+      <input type="text" id="schedule-title" placeholder="Enter schedule title…" maxlength="60" autocomplete="off" spellcheck="false">
+      <div id="action-btns">
+        <button class="btn btn-primary" id="btn-add">＋ Add Lecture</button>
+        <button class="btn" id="btn-save">⬇ Save Schedule</button>
+        <button class="btn" id="btn-load">↑ Load Schedule</button>
+        <button class="btn btn-danger" id="btn-new">✕ New Schedule</button>
+      </div>
+    </header>
+
+    <!-- Schedule Display — screenshotted -->
+    <div id="schedule-display">
+      <div id="sd-overlay"></div>
+      <div id="sd-inner">
+        <div id="display-title" class="hidden"></div>
+        <div id="grid-wrapper">
+          <!-- rendered by app.js -->
+        </div>
+      </div>
+    </div>
+
+  </div><!-- #app -->
+
+  <!-- Hidden file input -->
+  <input type="file" id="load-file-input" accept=".json" style="display:none">
+
+  <!-- Add / Edit Modal -->
+  <div id="modal-overlay" class="hidden" role="dialog" aria-modal="true" aria-labelledby="modal-heading">
+    <div id="modal">
+      <h2 id="modal-heading">Add Lecture</h2>
+
+      <div class="form-group">
+        <label for="field-name">Course Name</label>
+        <input type="text" id="field-name" placeholder="e.g. CS 101 — Introduction to Programming" maxlength="50" autocomplete="off">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Start Time</label>
+          <div class="time-selects">
+            <select id="field-start-h"></select>
+            <select id="field-start-m"></select>
+            <select id="field-start-ap"></select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>End Time</label>
+          <div class="time-selects">
+            <select id="field-end-h"></select>
+            <select id="field-end-m"></select>
+            <select id="field-end-ap"></select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Days</label>
+        <div id="day-checks">
+          <label class="day-pill"><input type="checkbox" value="Mon"><span>Mon</span></label>
+          <label class="day-pill"><input type="checkbox" value="Tue"><span>Tue</span></label>
+          <label class="day-pill"><input type="checkbox" value="Wed"><span>Wed</span></label>
+          <label class="day-pill"><input type="checkbox" value="Thu"><span>Thu</span></label>
+          <label class="day-pill"><input type="checkbox" value="Sat"><span>Sat</span></label>
+        </div>
+      </div>
+
+      <div id="modal-error" class="hidden" role="alert"></div>
+
+      <div id="modal-btns">
+        <button class="btn btn-primary" id="btn-modal-confirm">Confirm</button>
+        <button class="btn" id="btn-modal-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Context Menu -->
+  <div id="ctx-menu" class="hidden" role="menu">
+    <button id="ctx-edit"   role="menuitem">✎  Edit</button>
+    <button id="ctx-delete" role="menuitem">✕  Delete</button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
